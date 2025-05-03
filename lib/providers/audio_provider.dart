@@ -6,7 +6,7 @@ import 'package:record/record.dart';
 import 'package:uuid/uuid.dart';
 
 class AudioProvider extends ChangeNotifier {
-  final Record _recorder = Record();
+  final AudioRecorder _recorder = AudioRecorder();
   bool _isRecording = false;
   String _audioFilePath = '';
 
@@ -29,10 +29,12 @@ class AudioProvider extends ChangeNotifier {
 
       // Configure the recording session
       await _recorder.start(
+        RecordConfig(
+          encoder: AudioEncoder.aacLc,
+          bitRate: 128000,
+          sampleRate: 44100,
+        ),
         path: _audioFilePath,
-        encoder: AudioEncoder.aacLc,
-        bitRate: 128000,
-        samplingRate: 44100,
       );
 
       _isRecording = true;
