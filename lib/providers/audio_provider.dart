@@ -4,6 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:record/record.dart';
 import 'package:uuid/uuid.dart';
+import '../config/app_config.dart';
 
 class AudioProvider extends ChangeNotifier {
   final AudioRecorder _recorder = AudioRecorder();
@@ -31,8 +32,8 @@ class AudioProvider extends ChangeNotifier {
       await _recorder.start(
         RecordConfig(
           encoder: AudioEncoder.aacLc,
-          bitRate: 128000,
-          sampleRate: 44100,
+          bitRate: AppConfig.audioBitRate,
+          sampleRate: AppConfig.audioSampleRate,
         ),
         path: _audioFilePath,
       );
