@@ -1,14 +1,16 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiProvider extends ChangeNotifier {
   final Dio _dio = Dio();
-  final String _baseUrl = 'http://localhost:8888/api';
+  late final String _baseUrl;
   String _lastResponse = '';
   bool _isLoading = false;
 
   ApiProvider() {
+    _baseUrl = dotenv.env['API_BASE_URL'] ?? 'http://localhost:8888/api';
     _dio.options.baseUrl = _baseUrl;
     _dio.options.connectTimeout = const Duration(seconds: 5);
     _dio.options.receiveTimeout = const Duration(seconds: 10);
