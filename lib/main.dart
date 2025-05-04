@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AudioProvider()),
       ],
       child: MaterialApp(
-        title: 'Clordor Assistant',
+        title: 'Claris Assistant',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,

@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Clordor Assistant'),
+        title: const Text('Claris Assistant'),
       ),
       body: Column(
         children: [

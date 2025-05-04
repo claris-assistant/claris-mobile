@@ -1,5 +1,5 @@
-name: clordor_mobile
-description: A mobile client for clordor-mcp-server with voice commands
+name: Claris_mobile
+description: A mobile client for claris-mcp-server with voice commands
 version: 1.0.0+1
 
 environment:

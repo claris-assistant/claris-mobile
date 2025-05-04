@@ -1,4 +1,4 @@
-# temp_project
+# claris_assistant
 
 A new Flutter project.
 

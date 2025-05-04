@@ -33,7 +33,7 @@ flutter format .          # Format code
 - Prefer final for immutable variables
 - Use strong typing with Flutter widgets
 - Group imports: Dart, Flutter, external packages, project imports
-- Use async/await for API calls to clordor-mcp-server
+- Use async/await for API calls to claris-mcp-server
 - Handle API errors with try/catch and show user-friendly messages
 - Add comments for complex logic only
 - Each class/widget in its own file
