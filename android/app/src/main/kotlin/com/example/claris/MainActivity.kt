@@ -1,4 +1,4 @@
-package com.example.claris_assistant
+package com.example.claris
 
 import io.flutter.embedding.android.FlutterActivity
 
