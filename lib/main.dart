@@ -3,9 +3,14 @@ import 'package:provider/provider.dart';
 import 'screens/home_screen.dart';
 import 'providers/api_provider.dart';
 import 'providers/audio_provider.dart';
+import 'config/app_config.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Load saved settings
+  await AppConfig.loadSettings();
+
   runApp(const MyApp());
 }
 

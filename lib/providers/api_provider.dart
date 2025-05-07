@@ -9,9 +9,19 @@ class ApiProvider extends ChangeNotifier {
   bool _isLoading = false;
 
   ApiProvider() {
-    _dio.options.baseUrl = AppConfig.apiBaseUrl;
+    _updateBaseUrl();
     _dio.options.connectTimeout = const Duration(seconds: 5);
     _dio.options.receiveTimeout = const Duration(seconds: 10);
+  }
+
+  void _updateBaseUrl() {
+    _dio.options.baseUrl = AppConfig.apiBaseUrl;
+  }
+
+  // Call this when the server IP changes
+  void updateServerConfig() {
+    _updateBaseUrl();
+    notifyListeners();
   }
 
   String get lastResponse => _lastResponse;
