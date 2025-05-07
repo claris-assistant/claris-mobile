@@ -1,0 +1,83 @@
+#!/usr/bin/env amber
+
+// Simplified Claris Mobile Prerequisites Check Script
+// For Ubuntu 25.10
+
+main(args) {
+    echo "================================================="
+    echo "      CLARIS MOBILE PREREQUISITES CHECK          "
+    echo "================================================="
+    
+    // Check OS
+    trust $ lsb_release -ds $
+    echo ""
+    
+    // Check Flutter
+    echo "Checking Flutter installation..."
+    trust $ which flutter > /dev/null 2>&1 $
+    
+    if status == 0 {
+        trust $ flutter --version | head -n 1 $
+    } else {
+        echo "❌ Flutter not found in PATH"
+        echo "   Please install Flutter from https://flutter.dev/docs/get-started/install"
+    }
+    
+    // Check Java
+    echo "Checking Java installation..."
+    trust $ which java > /dev/null 2>&1 $
+    
+    if status == 0 {
+        trust $ java -version 2>&1 $
+    } else {
+        echo "❌ Java not found in PATH"
+        echo "   Please install JDK 11 or higher"
+    }
+    
+    // Check Android Studio
+    echo "Checking Android Studio..."
+    trust $ test -d ~/.local/installs/android-studio $
+    
+    if status == 0 {
+        echo "✅ Android Studio found at ~/.local/installs/android-studio"
+    } else {
+        echo "❌ Android Studio not found at ~/.local/installs/android-studio"
+        echo "   Please install Android Studio from https://developer.android.com/studio"
+    }
+    
+    // Check Android SDK
+    echo "Checking Android SDK..."
+    trust $ test -d ~/Android/Sdk $
+    
+    if status == 0 {
+        echo "✅ Android SDK found at ~/Android/Sdk"
+    } else {
+        echo "❌ Android SDK not found at ~/Android/Sdk"
+        echo "   Please install Android SDK through Android Studio"
+    }
+    
+    // Check NDK version
+    echo "Checking NDK version..."
+    let required_ndk = "28.1.13356709"
+    
+    trust $ test -d ~/Android/Sdk/ndk $
+    
+    if status == 0 {
+        trust $ ls ~/Android/Sdk/ndk | grep -q "{required_ndk}" $
+        
+        if status == 0 {
+            echo "✅ Required NDK version {required_ndk} found"
+        } else {
+            echo "❌ Required NDK version {required_ndk} not found"
+            echo "   Available versions:"
+            trust $ ls ~/Android/Sdk/ndk $
+            echo "   Please install through Android Studio > SDK Manager > SDK Tools > NDK"
+        }
+    } else {
+        echo "❌ Android NDK not found"
+        echo "   Please install NDK through Android Studio > SDK Manager > SDK Tools > NDK"
+    }
+    
+    echo ""
+    echo "Sanity check completed"
+}
